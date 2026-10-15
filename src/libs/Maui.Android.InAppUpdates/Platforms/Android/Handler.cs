@@ -40,10 +40,11 @@ public static class Handler
         AppUpdateManager = Options.UseFakeAppUpdateManager
             ? new FakeAppUpdateManager(activity)
             : AppUpdateManagerFactory.Create(activity);
-        AppUpdateSuccessListener ??= new AppUpdateSuccessListener(
+        AppUpdateSuccessListener = new AppUpdateSuccessListener(
             appUpdateManager: AppUpdateManager,
             activity: activity,
             updateRequest: Options.RequestCode);
+
         AppUpdateManager.GetAppUpdateInfo().AddOnSuccessListener(AppUpdateSuccessListener);
     }
     
@@ -58,10 +59,11 @@ public static class Handler
             return;
         }
         
-        ResumeSuccessListener ??= new ResumeSuccessListener(
+        ResumeSuccessListener = new ResumeSuccessListener(
             appUpdateManager: AppUpdateManager,
             activity: activity,
             updateRequest: Options.RequestCode);
+        
         AppUpdateManager.GetAppUpdateInfo().AddOnSuccessListener(ResumeSuccessListener);
     }
     
