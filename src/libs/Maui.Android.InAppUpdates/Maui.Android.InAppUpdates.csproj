@@ -21,9 +21,13 @@
   </PropertyGroup>
 
   <PropertyGroup Label="NuGet">
-    <PackageId>Oscore.$(AssemblyName)</PackageId>
-    <Description>NuGet package that implementing Android In-App Updates for MAUI with debugging capabilities.</Description>
-    <PackageTags>maui;android;in-app-updates;updates;in-app;net8;dotnet;csharp</PackageTags>
+    <PackageId>twelve-cgn.$(AssemblyName)</PackageId>
+    <Version>1.0.0</Version>
+	<Authors>twelve-cgn</Authors>
+	<Company>twelve-cgn</Company>
+	<Description>MAUI Android In-App Updates wrapper.</Description>
+	<PackageTags>maui;android;in-app-updates;net10;dotnet</PackageTags>
+	<RepositoryUrl>https://github.com/twelve-cgn/Maui.Android.InAppUpdates</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
