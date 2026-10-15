@@ -39,14 +39,25 @@ public class AppUpdateSuccessListener(
                 when updatePriority >= Handler.Options.ImmediateUpdatePriority &&
                      isImmediateUpdatesAllowed:
             {
-                _ = appUpdateManager.StartUpdateFlowForResult(
-                    info,
-                    activity,
-                    AppUpdateOptions
-                        .NewBuilder(AppUpdateType.Immediate)
-                        .SetAllowAssetPackDeletion(Handler.Options.AllowAssetPackDeletion)
-                        .Build(),
-                    updateRequest);
+                try
+                {
+                    _ = appUpdateManager.StartUpdateFlowForResult(
+                        info,
+                        activity,
+                        AppUpdateOptions
+                            .NewBuilder(AppUpdateType.Immediate)
+                            .SetAllowAssetPackDeletion(Handler.Options.AllowAssetPackDeletion)
+                            .Build(),
+                        updateRequest);
+                }
+                catch (Java.Lang.Exception ex)
+                {
+                    Handler.Options.DebugAction($"StartUpdateFlowForResult (Immediate) failed: {ex}");
+                }
+                catch (Exception ex)
+                {
+                    Handler.Options.DebugAction($"StartUpdateFlowForResult (Immediate) unexpected failure: {ex}");
+                }
                 break;
             }
 
@@ -57,14 +68,25 @@ public class AppUpdateSuccessListener(
                 InstallStateUpdatedListener ??= new InstallStateUpdatedListener();
                 appUpdateManager.RegisterListener(InstallStateUpdatedListener);
             
-                _ = appUpdateManager.StartUpdateFlowForResult(
-                    info,
-                    activity,
-                    AppUpdateOptions
-                        .NewBuilder(AppUpdateType.Flexible)
-                        .SetAllowAssetPackDeletion(Handler.Options.AllowAssetPackDeletion)
-                        .Build(),
-                    updateRequest);
+                try
+                {
+                    _ = appUpdateManager.StartUpdateFlowForResult(
+                        info,
+                        activity,
+                        AppUpdateOptions
+                            .NewBuilder(AppUpdateType.Flexible)
+                            .SetAllowAssetPackDeletion(Handler.Options.AllowAssetPackDeletion)
+                            .Build(),
+                        updateRequest);
+                }
+                catch (Java.Lang.Exception ex)
+                {
+                    Handler.Options.DebugAction($"StartUpdateFlowForResult (Flexible) failed: {ex}");
+                }
+                catch (Exception ex)
+                {
+                    Handler.Options.DebugAction($"StartUpdateFlowForResult (Flexible) unexpected failure: {ex}");
+                }
                 break;
             }
 
