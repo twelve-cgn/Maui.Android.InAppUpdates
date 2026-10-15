@@ -24,6 +24,11 @@ public class ResumeSuccessListener(
 {
     public void OnSuccess(Java.Lang.Object? result)
     {
+        if (activity.IsFinishing || activity.IsDestroyed)
+        {
+            return;
+        }
+        
         if (result is not AppUpdateInfo info)
         {
             return;
